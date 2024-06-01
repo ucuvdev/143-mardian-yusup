@@ -49,12 +49,6 @@
                     <span>Profil UPZ</span>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="{{ route('pengguna') }}">
-                    <i class="fas fa-users-cog"></i>
-                    <span>Pengguna</span>
-                </a>
-            </li>
         </ul>
     </aside>
 </div>
