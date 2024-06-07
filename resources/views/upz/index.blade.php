@@ -7,8 +7,28 @@
             <div class="section-header">
                 <h1>@yield('title')</h1>
             </div>
-            <div class="row">
+            <div class="section-body">
+
             </div>
         </section>
     </div>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: 'upz',
+                type: 'get',
+                success: function(response) {
+                    if (response) {
+                        $('.section-body').html(response);
+                    }
+                }
+            })
+        });
+    </script>
 @endsection;

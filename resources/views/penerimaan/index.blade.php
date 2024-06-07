@@ -37,7 +37,45 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#penerimaanTable').DataTable();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.modal-form').on('shown.bs.modal', function() {
+                $(this).find('[autofocus]').focus();
+            });
+
+            $('#penerimaanTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('penerimaan.index') }}",
+                columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    searchble: false,
+                    orderable: false
+                }, {
+                    data: 'nama_kk'
+                    name: 'nama_kk'
+                }, {
+                    data: 'jml_muzakki',
+                    name: 'jml_muzakki'
+                }, {
+                    name: 'jml_beras',
+                    data: 'jml_beras'
+                }, {
+                    name: 'jml_uang',
+                    data: 'jml_uang'
+                }, {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    sWidth: '10%',
+                }]
+            });
         });
     </script>
 @endsection;

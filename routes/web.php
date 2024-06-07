@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AsnafController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\UpzController;
+use App\Http\Controllers\PenerimaanController;
+use App\Http\Controllers\PenyaluranController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'dashboard');
@@ -17,17 +20,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('penerimaan')->group(function () {
+Route::prefix('data-penerimaan')->group(function () {
     Route::get('/', function () {
         return view('penerimaan.index');
-    })->middleware(['auth', 'verified'])->name('penerimaan');
+    })->middleware(['auth', 'verified'])->name('data-penerimaan');
 });
 
-Route::prefix('penyaluran')->group(function () {
+Route::resource('penerimaan', PenerimaanController::class)->middleware(['auth', 'verified']);
+
+Route::prefix('data-penyaluran')->group(function () {
     Route::get('/', function () {
         return view('penyaluran.index');
-    })->middleware(['auth', 'verified'])->name('penyaluran');
+    })->middleware(['auth', 'verified'])->name('data-penyaluran');
 });
+
+Route::resource('penyaluran', PenyaluranController::class)->middleware(['auth', 'verified']);
 
 Route::prefix('data-warga')->group(function () {
     Route::get('/', function () {
@@ -50,5 +57,7 @@ Route::prefix('profil-upz')->group(function () {
         return view('upz.index');
     })->middleware(['auth', 'verified'])->name('profil-upz');
 });
+
+Route::resource('upz', UpzController::class)->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

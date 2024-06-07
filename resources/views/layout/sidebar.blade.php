@@ -16,13 +16,13 @@
 
             <li class="menu-header">Main Menu</li>
             <li>
-                <a class="nav-link" href="{{ route('penerimaan') }}">
+                <a class="nav-link" href="{{ route('data-penerimaan') }}">
                     <i class="fas fa-file-signature"></i>
                     <span>Penerimaan Zakat</span>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="{{ route('penyaluran') }}">
+                <a class="nav-link" href="{{ route('data-penyaluran') }}">
                     <i class="fas fa-hand-holding-heart"></i>
                     <span>Penyaluran Zakat</span>
                 </a>
