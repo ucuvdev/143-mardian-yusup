@@ -1,5 +1,5 @@
-@extends('layout.index');
-@section('title', 'Dashboard');
+@extends('layout.index')
+@section('title', 'Dashboard')
 @section('content')
     <!-- Main Content -->
     <div class="main-content">
@@ -11,4 +11,4 @@
             </div>
         </section>
     </div>
-@endsection;
+@endsection

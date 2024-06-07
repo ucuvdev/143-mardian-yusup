@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AsnafController;
+use App\Http\Controllers\WargaController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'dashboard');
@@ -33,11 +35,15 @@ Route::prefix('data-warga')->group(function () {
     })->middleware(['auth', 'verified'])->name('data-warga');
 });
 
+Route::resource('warga', WargaController::class)->middleware(['auth', 'verified']);
+
 Route::prefix('data-asnaf')->group(function () {
     Route::get('/', function () {
         return view('asnaf.index');
     })->middleware(['auth', 'verified'])->name('data-asnaf');
 });
+
+Route::resource('asnaf', AsnafController::class)->middleware(['auth', 'verified']);
 
 Route::prefix('profil-upz')->group(function () {
     Route::get('/', function () {
@@ -45,4 +51,4 @@ Route::prefix('profil-upz')->group(function () {
     })->middleware(['auth', 'verified'])->name('profil-upz');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
